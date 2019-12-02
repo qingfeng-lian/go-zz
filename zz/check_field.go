@@ -21,7 +21,7 @@ func CheckStructField(data interface{}) (err error) {
 				//这是一个特殊的判断， strings.Split 返回空字符串
 			case "required":
 				if rv.Field(i).IsZero() {
-					err = errors.New(fmt.Sprintf(" %s is required", field.Name))
+					err = errors.New(fmt.Sprintf("%s is required", field.Name))
 					return
 				}
 			case "string":
