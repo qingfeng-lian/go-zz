@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+//检测结构体字段
 func CheckStructField(data interface{}) (err error) {
 	rv := reflect.ValueOf(data)
 	numField := rv.NumField()
