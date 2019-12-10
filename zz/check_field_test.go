@@ -7,11 +7,11 @@ import (
 func TestCheckStructField(t *testing.T) {
 	type param struct {
 		Name    string `json:"name" check:"required"`
-		Address string `json:"address"`
+		Address string `json:"address" check:"required"`
 	}
 	a := param{
 		Name:    "dafdf",
-		Address: "daffdsfasdfsdf",
+		Address: "",
 	}
 	err := CheckStructField(a)
 	if err != nil {

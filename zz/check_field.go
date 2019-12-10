@@ -14,6 +14,10 @@ func CheckStructField(data interface{}) (err error) {
 	for i := 0; i < numField; i++ {
 		field := rv.Type().Field(i)
 		tagName := getTagName(field.Tag.Get("check"))
+		tagFieldName := field.Tag.Get("json")
+		if tagFieldName == "" {
+			tagFieldName = field.Name
+		}
 		tagNameSlice := strings.Split(tagName, ";")
 		for _, v := range tagNameSlice {
 			switch v {
@@ -21,11 +25,9 @@ func CheckStructField(data interface{}) (err error) {
 				//这是一个特殊的判断， strings.Split 返回空字符串
 			case "required":
 				if rv.Field(i).IsZero() {
-					err = errors.New(fmt.Sprintf("%s is required", field.Name))
+					err = errors.New(fmt.Sprintf("%s is required", tagFieldName))
 					return
 				}
-			case "string":
-
 			default:
 				err = errors.New(fmt.Sprintf("field check type not found, current type %+v", v))
 				return
