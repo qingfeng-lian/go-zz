@@ -14,3 +14,4 @@ aes
 ## 微信小程序
 example: [获取OpenId 方法：WxGetOpenid](example/wx.go)
 
+test
