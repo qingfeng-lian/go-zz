@@ -7,10 +7,10 @@ import (
 
 //wx基本信息
 type Wx struct {
-	Code2Session string
-	AppId        string
-	Secret       string
-	JsCode       string
+	Code2Session string //微信的 url
+	AppId        string //appid
+	Secret       string //秘钥
+	JsCode       string //wx.login获取的code
 }
 
 //code 换取 openid
@@ -38,6 +38,7 @@ type WxEncryptedData struct {
 	} `json:"watermark"`
 }
 
+//替换url关键字 (根据 wx.login 的code换取session_key 和 openid的url)
 func (wx Wx) GetCode2SessionUrl(info Wx) string {
 	urlString := strings.Replace(info.Code2Session, "{APPID}", info.AppId, 1)
 	urlString = strings.Replace(urlString, "{SECRET}", info.Secret, 1)
