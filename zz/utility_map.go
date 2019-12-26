@@ -22,7 +22,7 @@ func MapSortKeyToString(data map[string]interface{}) string {
 	for _, k := range keyMap {
 		v := data[k]
 		tmpS := ""
-		fmt.Println(reflect.TypeOf(v).String())
+		//fmt.Println(reflect.TypeOf(v).String())
 		switch reflect.TypeOf(v).String() {
 		case "string":
 			tmpS = v.(string)
@@ -36,13 +36,19 @@ func MapSortKeyToString(data map[string]interface{}) string {
 			tmpS = strconv.FormatUint(uint64(v.(uint)), 10)
 		case "int":
 			tmpS = strconv.Itoa(v.(int))
+		case "bool":
+			if v.(bool) == true {
+				tmpS = "true"
+			} else {
+				tmpS = "false"
+			}
 		default:
 			tmpS = ""
 		}
 		dataStr += k + "=" + tmpS + "&"
 	}
 	dataStr = dataStr[:len(dataStr)-1]
-	fmt.Println("MapSortKeyToString", dataStr)
+	//fmt.Println("MapSortKeyToString", dataStr)
 	return dataStr
 }
 
