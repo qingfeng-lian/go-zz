@@ -15,6 +15,9 @@ map生成按key从小到大排序返回字符串以"&"链接的字符串的md5
 ## 加密/解密
 aes
 
+## 常用方法集合
+utility_check.go
+
 ## 微信小程序
 example: [获取OpenId 方法：WxGetOpenid](example/wx.go)
 
