@@ -21,7 +21,33 @@ func TestVerifyEmailFormat(t *testing.T) {
 
 	c := "qingfeng.--lian@test.com"
 	cVerify := VerifyEmailFormat(c)
-	if cVerify == false {
+	if cVerify == true {
+		t.Errorf("c check %+v", cVerify)
+		t.Fail()
+		return
+	}
+}
+
+func TestVerifyMobileFormat(t *testing.T) {
+	a := ""
+	aVerify := VerifyMobileFormat(a)
+	if aVerify == true {
+		t.Errorf("a check %+v", aVerify)
+		t.Fail()
+		return
+	}
+
+	b := "17600000000"
+	bVerify := VerifyMobileFormat(b)
+	if bVerify == false {
+		t.Errorf("b check %+v", bVerify)
+		t.Fail()
+		return
+	}
+
+	c := "qingfeng.--lian@test.com"
+	cVerify := VerifyMobileFormat(c)
+	if cVerify == true {
 		t.Errorf("c check %+v", cVerify)
 		t.Fail()
 		return
