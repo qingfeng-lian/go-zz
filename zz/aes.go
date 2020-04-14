@@ -4,14 +4,13 @@ import (
 	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
-	"encoding/json"
 )
 
 //aes 解密
-func AESDecrypt(crypted, key []byte, iv []byte, decryptData interface{}) error {
+func AESDecrypt(crypted, key []byte, iv []byte) (string, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
-		return err
+		return "", err
 	}
 	blockSize := block.BlockSize()
 	blockMode := cipher.NewCBCDecrypter(block, iv[:blockSize])
@@ -19,11 +18,7 @@ func AESDecrypt(crypted, key []byte, iv []byte, decryptData interface{}) error {
 	blockMode.CryptBlocks(orgData, crypted)
 	orgData = PKCS7UnPadding(orgData)
 
-	err = json.Unmarshal(orgData, decryptData)
-	if err != nil {
-		return err
-	}
-	return nil
+	return string(orgData), nil
 }
 
 //pkcs7 去掉补码
