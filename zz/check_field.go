@@ -10,6 +10,9 @@ import (
 //检测结构体字段
 func CheckStructField(data interface{}) (err error) {
 	rv := reflect.ValueOf(data)
+	if rv.Kind() == reflect.Ptr {
+		rv = rv.Elem()
+	}
 	numField := rv.NumField()
 	for i := 0; i < numField; i++ {
 		field := rv.Type().Field(i)
