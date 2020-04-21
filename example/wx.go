@@ -5,7 +5,7 @@ import (
 	"zz/zz"
 )
 
-//获取微信openid
+//获取微信的openid
 func WxGetOpenid(code string) (zz.WxCode2SessionResponse, error) {
 	var err error
 	//换取openid
