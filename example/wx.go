@@ -3,6 +3,7 @@ package example
 import (
 	"errors"
 	"zz/zz"
+	"zz/zz/zzhttp"
 )
 
 //获取微信openid
@@ -16,7 +17,7 @@ func WxGetOpenid(code string) (zz.WxCode2SessionResponse, error) {
 		JsCode:       code,
 	})
 	openIdInfo := zz.WxCode2SessionResponse{}
-	err = zz.Get(codeurl, map[string]string{}, &openIdInfo)
+	err = zzhttp.Get(codeurl, map[string]string{}, &openIdInfo)
 	if err != nil {
 		return openIdInfo, err
 	}
